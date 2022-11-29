@@ -11,7 +11,6 @@ const simbolos = document.getElementsByClassName("simbolos");
 var n1 = null;
 var n2 = null;
 var sinal = "";
-var results = 0;
 var permiteSinal = true;
 
 // Ações com botões
@@ -49,6 +48,7 @@ function letraC() {
 function igualar() {
   let acao = "";
   n2 = Number(visor2.innerText);
+  permiteSinal = true;
 
   if (validaNumeros()) {
     switch (sinal) {
@@ -65,7 +65,10 @@ function igualar() {
         acao = porcentar();
         break;
       case "/":
-        acao = dividir();
+        if (n2 == 0) {
+          acao = "Não pode dividir por 0";
+          permiteSinal = false;
+        } else acao = dividir();
         break;
       default:
         acao = `<h4 style="color: rgb(220, 0, 0); margin-top: -5px;">[ERRO]<h4>`;
@@ -81,8 +84,6 @@ function igualar() {
 
   n1 = null;
   n2 = null;
-
-  permiteSinal = true;
 }
 
 function somar() {
@@ -102,13 +103,7 @@ function porcentar() {
 }
 
 function dividir() {
-  if (n2 == 0) {
-    results = "Não pode dividir por 0";
-  } else {
-    results = n1 / n2;
-  }
-
-  return results;
+  return n1 / n2;
 }
 
 // Métodos de chamamento
