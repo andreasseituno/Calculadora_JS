@@ -17,8 +17,11 @@ var permiteSinal = true;
 
 for (let i = 0; i < botoes.length - 1; i++) {
   botoes[i].addEventListener("click", () => {
-    if (visor2.innerText.length < 20 && !visor1.innerText.includes("="))
-      visor2.innerText += botoes[i].innerText;
+    if (visor1.innerText.includes("=")) 
+    limpar();
+
+    if (visor2.innerText.length < 20) 
+    visor2.innerText += botoes[i].innerText;
   });
 }
 
@@ -30,10 +33,13 @@ for (let i = 0; i < simbolos.length; i++) {
 }
 
 function virgula() {
+  if (visor1.innerText.includes("=")) 
+  visor1.innerText = "";
+
   if (
     !visor2.innerText.includes(".") &&
     visor2.innerText != "" &&
-    !visor1.innerText.includes("=")
+    Number(visor2.innerText) * 0 == 0
   )
     visor2.innerText += ".";
 }
@@ -128,9 +134,8 @@ function simboloAlternativo() {
 }
 
 function validaNumeros() {
-  if (n1 == null || n2 == null) {
+  if (n1 == null || n2 == null) 
     return false;
-  } else {
+   else 
     return true;
-  }
 }
