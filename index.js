@@ -39,7 +39,7 @@ function virgula() {
   if (
     !visor2.innerText.includes(".") &&
     visor2.innerText != "" &&
-    Number(visor2.innerText) * 0 == 0
+    !isNaN(visor2.innerText)
   )
     visor2.innerText += ".";
 }
